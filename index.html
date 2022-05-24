@@ -14649,11 +14649,22 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">df_girona</span><span class="p">[</span><span class="n">df_girona</span><span class="o">.</span><span class="n">Curs</span><span class="o">==</span><span class="s2">&quot;2021-2022&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;NOM_MUNICIPI&quot;</span><span class="p">,</span> <span class="s2">&quot;COD_LLOC&quot;</span><span class="p">])[</span><span class="s2">&quot;TOT_DOT&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 
-<span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+<span class="n">bars</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">()</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
     <span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s2">&quot;sum(TOT_DOT)&quot;</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Dotació&quot;</span><span class="p">,</span> <span class="n">stack</span><span class="o">=</span><span class="s1">&#39;zero&#39;</span><span class="p">),</span>
     <span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s2">&quot;NOM_MUNICIPI:N&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">),</span>
     <span class="n">alt</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s2">&quot;COD_LLOC&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Especialitat&quot;</span><span class="p">),</span>
 <span class="p">)</span>
+
+<span class="n">text_detall</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">()</span><span class="o">.</span><span class="n">mark_text</span><span class="p">(</span><span class="n">dx</span><span class="o">=-</span><span class="mi">13</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s2">&quot;sum(TOT_DOT)&quot;</span><span class="p">,</span> <span class="n">stack</span><span class="o">=</span><span class="s1">&#39;zero&#39;</span><span class="p">),</span>
+    <span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s2">&quot;NOM_MUNICIPI:N&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">),</span>
+    <span class="n">detail</span><span class="o">=</span><span class="s1">&#39;COD_LLOC:N&#39;</span><span class="p">,</span>
+    <span class="n">text</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;sum(TOT_DOT):Q&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">alt</span><span class="o">.</span><span class="n">layer</span><span class="p">(</span>
+        <span class="n">bars</span><span class="p">,</span> <span class="n">text_detall</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span>
+    <span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14677,13 +14688,13 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 
-<div id="altair-viz-bf20f395ad6042618f3a8644f1951604"></div>
+<div id="altair-viz-c7daee5278ae4bdcaa3da9b39d4a33db"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-bf20f395ad6042618f3a8644f1951604") {
-      outputDiv = document.getElementById("altair-viz-bf20f395ad6042618f3a8644f1951604");
+    if (outputDiv.id !== "altair-viz-c7daee5278ae4bdcaa3da9b39d4a33db") {
+      outputDiv = document.getElementById("altair-viz-c7daee5278ae4bdcaa3da9b39d4a33db");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -14729,7 +14740,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-c83767edd059cc3a0b383322aaef064e"}, "mark": "bar", "encoding": {"color": {"field": "COD_LLOC", "title": "Especialitat", "type": "nominal"}, "x": {"aggregate": "sum", "field": "TOT_DOT", "stack": "zero", "title": "Dotaci\u00f3", "type": "quantitative"}, "y": {"field": "NOM_MUNICIPI", "title": "", "type": "nominal"}}, "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-c83767edd059cc3a0b383322aaef064e": [{"NOM_MUNICIPI": "Angl\u00e8s", "COD_LLOC": "507", "TOT_DOT": 6.0}, {"NOM_MUNICIPI": "Angl\u00e8s", "COD_LLOC": "627", "TOT_DOT": 4.5}, {"NOM_MUNICIPI": "Banyoles", "COD_LLOC": "507", "TOT_DOT": 5.0}, {"NOM_MUNICIPI": "Banyoles", "COD_LLOC": "627", "TOT_DOT": 2.0}, {"NOM_MUNICIPI": "Blanes", "COD_LLOC": "507", "TOT_DOT": 9.0}, {"NOM_MUNICIPI": "Blanes", "COD_LLOC": "627", "TOT_DOT": 7.0}, {"NOM_MUNICIPI": "Figueres", "COD_LLOC": "507", "TOT_DOT": 7.0}, {"NOM_MUNICIPI": "Figueres", "COD_LLOC": "627", "TOT_DOT": 4.0}, {"NOM_MUNICIPI": "Girona", "COD_LLOC": "507", "TOT_DOT": 8.5}, {"NOM_MUNICIPI": "Girona", "COD_LLOC": "627", "TOT_DOT": 5.5}, {"NOM_MUNICIPI": "Olot", "COD_LLOC": "507", "TOT_DOT": 8.5}, {"NOM_MUNICIPI": "Olot", "COD_LLOC": "627", "TOT_DOT": 3.0}, {"NOM_MUNICIPI": "Palam\u00f3s", "COD_LLOC": "507", "TOT_DOT": 5.0}, {"NOM_MUNICIPI": "Palam\u00f3s", "COD_LLOC": "627", "TOT_DOT": 6.0}, {"NOM_MUNICIPI": "Salt", "COD_LLOC": "507", "TOT_DOT": 5.5}, {"NOM_MUNICIPI": "Salt", "COD_LLOC": "627", "TOT_DOT": 5.0}, {"NOM_MUNICIPI": "Vidreres", "COD_LLOC": "507", "TOT_DOT": 6.0}, {"NOM_MUNICIPI": "Vidreres", "COD_LLOC": "627", "TOT_DOT": 4.0}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "layer": [{"mark": "bar", "encoding": {"color": {"field": "COD_LLOC", "title": "Especialitat", "type": "nominal"}, "x": {"aggregate": "sum", "field": "TOT_DOT", "stack": "zero", "title": "Dotaci\u00f3", "type": "quantitative"}, "y": {"field": "NOM_MUNICIPI", "title": "", "type": "nominal"}}}, {"mark": {"type": "text", "color": "white", "dx": -13}, "encoding": {"detail": {"field": "COD_LLOC", "type": "nominal"}, "text": {"aggregate": "sum", "field": "TOT_DOT", "type": "quantitative"}, "x": {"aggregate": "sum", "field": "TOT_DOT", "stack": "zero", "type": "quantitative"}, "y": {"field": "NOM_MUNICIPI", "title": "", "type": "nominal"}}}], "data": {"name": "data-c83767edd059cc3a0b383322aaef064e"}, "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-c83767edd059cc3a0b383322aaef064e": [{"NOM_MUNICIPI": "Angl\u00e8s", "COD_LLOC": "507", "TOT_DOT": 6.0}, {"NOM_MUNICIPI": "Angl\u00e8s", "COD_LLOC": "627", "TOT_DOT": 4.5}, {"NOM_MUNICIPI": "Banyoles", "COD_LLOC": "507", "TOT_DOT": 5.0}, {"NOM_MUNICIPI": "Banyoles", "COD_LLOC": "627", "TOT_DOT": 2.0}, {"NOM_MUNICIPI": "Blanes", "COD_LLOC": "507", "TOT_DOT": 9.0}, {"NOM_MUNICIPI": "Blanes", "COD_LLOC": "627", "TOT_DOT": 7.0}, {"NOM_MUNICIPI": "Figueres", "COD_LLOC": "507", "TOT_DOT": 7.0}, {"NOM_MUNICIPI": "Figueres", "COD_LLOC": "627", "TOT_DOT": 4.0}, {"NOM_MUNICIPI": "Girona", "COD_LLOC": "507", "TOT_DOT": 8.5}, {"NOM_MUNICIPI": "Girona", "COD_LLOC": "627", "TOT_DOT": 5.5}, {"NOM_MUNICIPI": "Olot", "COD_LLOC": "507", "TOT_DOT": 8.5}, {"NOM_MUNICIPI": "Olot", "COD_LLOC": "627", "TOT_DOT": 3.0}, {"NOM_MUNICIPI": "Palam\u00f3s", "COD_LLOC": "507", "TOT_DOT": 5.0}, {"NOM_MUNICIPI": "Palam\u00f3s", "COD_LLOC": "627", "TOT_DOT": 6.0}, {"NOM_MUNICIPI": "Salt", "COD_LLOC": "507", "TOT_DOT": 5.5}, {"NOM_MUNICIPI": "Salt", "COD_LLOC": "627", "TOT_DOT": 5.0}, {"NOM_MUNICIPI": "Vidreres", "COD_LLOC": "507", "TOT_DOT": 6.0}, {"NOM_MUNICIPI": "Vidreres", "COD_LLOC": "627", "TOT_DOT": 4.0}]}}, {"mode": "vega-lite"});
 </script>
 </div>
 
@@ -14805,13 +14816,13 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 
-<div id="altair-viz-724a45a572c8431497174d5058b1cc8f"></div>
+<div id="altair-viz-c69a7a2d1b58459887466460add2af91"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-724a45a572c8431497174d5058b1cc8f") {
-      outputDiv = document.getElementById("altair-viz-724a45a572c8431497174d5058b1cc8f");
+    if (outputDiv.id !== "altair-viz-c69a7a2d1b58459887466460add2af91") {
+      outputDiv = document.getElementById("altair-viz-c69a7a2d1b58459887466460add2af91");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -14964,13 +14975,13 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 
-<div id="altair-viz-78227f1ee8244453bea265e63bcd0a56"></div>
+<div id="altair-viz-007ec3b8d6a54800a32844a92f971e72"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-78227f1ee8244453bea265e63bcd0a56") {
-      outputDiv = document.getElementById("altair-viz-78227f1ee8244453bea265e63bcd0a56");
+    if (outputDiv.id !== "altair-viz-007ec3b8d6a54800a32844a92f971e72") {
+      outputDiv = document.getElementById("altair-viz-007ec3b8d6a54800a32844a92f971e72");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
